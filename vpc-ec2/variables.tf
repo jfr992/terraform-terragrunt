@@ -18,12 +18,12 @@ variable "private_2_cidr" {
   description = "private_2_cidr"
 }
 
-variable "az-id-1" {
+variable "az_id_1" {
   type        = string
   description = "availability zone 1"
 }
 
-variable "az-id-2" {
+variable "az_id_2" {
   type        = string
   description = "availability zone 2"
 }

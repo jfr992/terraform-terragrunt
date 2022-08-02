@@ -23,11 +23,11 @@ data "aws_ami" "amazon-2" {
 }
 
 resource "aws_launch_configuration" "lg_webserver" {
-  name          = "lg-webserver"
-  image_id      = data.aws_ami.amazon-2.id
-  instance_type = var.instance_type
-  user_data     = base64encode(data.template_file.userdata.rendered)
-  security_groups = [aws_security_group.ec2_in_80.id]
+  name                 = "lg-webserver"
+  image_id             = data.aws_ami.amazon-2.id
+  instance_type        = var.instance_type
+  user_data            = base64encode(file("${path.module}/files/userdata.sh"))
+  security_groups      = [aws_security_group.ec2_in_80.id]
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
 }
 
@@ -72,11 +72,11 @@ resource "aws_security_group" "ec2_in_80" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "allow TCP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    security_groups  = [aws_security_group.alb.id]
+    description     = "allow TCP"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
   }
 
   egress {
