@@ -1,4 +1,4 @@
-## Terraform ec2 app
+## Terraform ec2 app with terragrunt (WIP)
 
 ## Description
 A quick guide to setup this terraform project and how to run terratest tests
